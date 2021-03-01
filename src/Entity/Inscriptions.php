@@ -37,5 +37,27 @@ class Inscriptions
      */
     private $dateInscription;
 
+    public function getSortiesNoSortie(): ?int
+    {
+        return $this->sortiesNoSortie;
+    }
+
+    public function getParticipantsNoParticipant(): ?int
+    {
+        return $this->participantsNoParticipant;
+    }
+
+    public function getDateInscription(): ?\DateTimeInterface
+    {
+        return $this->dateInscription;
+    }
+
+    public function setDateInscription(\DateTimeInterface $dateInscription): self
+    {
+        $this->dateInscription = $dateInscription;
+
+        return $this;
+    }
+
 
 }

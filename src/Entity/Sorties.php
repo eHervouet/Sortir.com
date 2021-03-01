@@ -98,5 +98,142 @@ class Sorties
      */
     private $etatsNoEtat;
 
+    public function getNoSortie(): ?int
+    {
+        return $this->noSortie;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getDatedebut(): ?\DateTimeInterface
+    {
+        return $this->datedebut;
+    }
+
+    public function setDatedebut(\DateTimeInterface $datedebut): self
+    {
+        $this->datedebut = $datedebut;
+
+        return $this;
+    }
+
+    public function getDuree(): ?int
+    {
+        return $this->duree;
+    }
+
+    public function setDuree(?int $duree): self
+    {
+        $this->duree = $duree;
+
+        return $this;
+    }
+
+    public function getDatecloture(): ?\DateTimeInterface
+    {
+        return $this->datecloture;
+    }
+
+    public function setDatecloture(\DateTimeInterface $datecloture): self
+    {
+        $this->datecloture = $datecloture;
+
+        return $this;
+    }
+
+    public function getNbinscriptionsmax(): ?int
+    {
+        return $this->nbinscriptionsmax;
+    }
+
+    public function setNbinscriptionsmax(int $nbinscriptionsmax): self
+    {
+        $this->nbinscriptionsmax = $nbinscriptionsmax;
+
+        return $this;
+    }
+
+    public function getDescriptioninfos(): ?string
+    {
+        return $this->descriptioninfos;
+    }
+
+    public function setDescriptioninfos(?string $descriptioninfos): self
+    {
+        $this->descriptioninfos = $descriptioninfos;
+
+        return $this;
+    }
+
+    public function getEtatsortie(): ?int
+    {
+        return $this->etatsortie;
+    }
+
+    public function setEtatsortie(?int $etatsortie): self
+    {
+        $this->etatsortie = $etatsortie;
+
+        return $this;
+    }
+
+    public function getUrlphoto(): ?string
+    {
+        return $this->urlphoto;
+    }
+
+    public function setUrlphoto(?string $urlphoto): self
+    {
+        $this->urlphoto = $urlphoto;
+
+        return $this;
+    }
+
+    public function getOrganisateur(): ?int
+    {
+        return $this->organisateur;
+    }
+
+    public function setOrganisateur(int $organisateur): self
+    {
+        $this->organisateur = $organisateur;
+
+        return $this;
+    }
+
+    public function getLieuxNoLieu(): ?int
+    {
+        return $this->lieuxNoLieu;
+    }
+
+    public function setLieuxNoLieu(int $lieuxNoLieu): self
+    {
+        $this->lieuxNoLieu = $lieuxNoLieu;
+
+        return $this;
+    }
+
+    public function getEtatsNoEtat(): ?int
+    {
+        return $this->etatsNoEtat;
+    }
+
+    public function setEtatsNoEtat(int $etatsNoEtat): self
+    {
+        $this->etatsNoEtat = $etatsNoEtat;
+
+        return $this;
+    }
+
 
 }

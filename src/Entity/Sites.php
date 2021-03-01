@@ -28,5 +28,22 @@ class Sites
      */
     private $nomSite;
 
+    public function getNoSite(): ?int
+    {
+        return $this->noSite;
+    }
+
+    public function getNomSite(): ?string
+    {
+        return $this->nomSite;
+    }
+
+    public function setNomSite(string $nomSite): self
+    {
+        $this->nomSite = $nomSite;
+
+        return $this;
+    }
+
 
 }
