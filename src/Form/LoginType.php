@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class RegisterType extends AbstractType
+class LoginType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -32,7 +32,7 @@ class RegisterType extends AbstractType
             ]
         ])
         ->add('add', SubmitType::class, [
-            'label' => 'Register'
+            'label' => 'Login'
         ]);
     }
 
