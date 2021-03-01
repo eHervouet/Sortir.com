@@ -41,9 +41,7 @@ class ParticipantController extends AbstractController
      */
     public function login(): Response
     {
-        return $this->render("participants/login.html.twig", [
-
-        ]);
+        return $this->render("participants/login.html.twig");
     }
 
     /**

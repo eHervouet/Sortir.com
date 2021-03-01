@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\User;
+use App\Entity\Participants;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,8 +16,8 @@ class LoginType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('username', null, [
-            'label' => 'User Name',
+        ->add('pseudo', null, [
+            'label' => 'Pseudo',
             'attr' =>
                 ['placeholder' => 'Your user name']
         ])
@@ -39,7 +39,7 @@ class LoginType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => Participants::class,
         ]);
     }
 }

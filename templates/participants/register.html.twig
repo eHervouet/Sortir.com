@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 {% form_theme registerForm 'bootstrap_4_horizontal_layout.html.twig' %}
 
-{% block main %}
+{% block body %}
+<div style="max-width: 40%; margin: 20px 0 0 2%;">
     {{  form_start(registerForm) }}
 
     {{ form_widget(registerForm) }}
     
     {{  form_end(registerForm) }}
+</div>
 {% endblock %}
 
 {% block title %}{{ parent() }} | Registration{% endblock %}
