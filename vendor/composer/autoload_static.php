@@ -558,6 +558,15 @@ class ComposerStaticInit273a0ba7121afa8fb0a935d72b68f044
     );
 
     public static $classMap = array (
+        'App\\Controller\\HomeController' => __DIR__ . '/../..' . '/src/Controller/HomeController.php',
+        'App\\Entity\\Etats' => __DIR__ . '/../..' . '/src/Entity/Etats.php',
+        'App\\Entity\\Inscriptions' => __DIR__ . '/../..' . '/src/Entity/Inscriptions.php',
+        'App\\Entity\\Lieux' => __DIR__ . '/../..' . '/src/Entity/Lieux.php',
+        'App\\Entity\\Participants' => __DIR__ . '/../..' . '/src/Entity/Participants.php',
+        'App\\Entity\\Sites' => __DIR__ . '/../..' . '/src/Entity/Sites.php',
+        'App\\Entity\\Sorties' => __DIR__ . '/../..' . '/src/Entity/Sorties.php',
+        'App\\Entity\\Villes' => __DIR__ . '/../..' . '/src/Entity/Villes.php',
+        'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Collator' => __DIR__ . '/..' . '/symfony/intl/Resources/stubs/Collator.php',
         'Doctrine\\Bundle\\DoctrineBundle\\Command\\CreateDatabaseDoctrineCommand' => __DIR__ . '/..' . '/doctrine/doctrine-bundle/Command/CreateDatabaseDoctrineCommand.php',

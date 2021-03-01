@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Accueil{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+div {
+text-align: center;
+}
+{% endblock %}
+
+{% block body %}
+    </br>
+    <div>
+        <h1>Bienvenue sur <span style="text-decoration : underline;">Sortir.com</span></h1>
+        <img src="{{ asset('img/accueil.jpg') }}" />
+    </div>
+{% endblock %}
