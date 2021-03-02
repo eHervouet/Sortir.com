@@ -50,7 +50,7 @@ class RegisterType extends AbstractType
         ->add('mail', EmailType::class, [
             'label' => 'Adresse mail',
             'attr' =>
-                ['placeholder' => 'exemple@this.com']
+                ['placeholder' => 'exemple@domaine.ex']
         ])
         ->add('telephone', TelType::class, [
             'label' => 'Numéro de téléphone',
@@ -58,7 +58,7 @@ class RegisterType extends AbstractType
                 ['placeholder' => '+33000000000']
         ])
         ->add('add', SubmitType::class, [
-            'label' => 'Register'
+            'label' => 'S\'enregistrer'
         ]);
     }
 

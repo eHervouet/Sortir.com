@@ -32,6 +32,7 @@ class ParticipantController extends AbstractController
             $em->persist($participant);
             $em->flush();
 
+            return $this->redirectToRoute("home");
         }
 
         return $this->render("participants/register.html.twig",[
@@ -40,7 +41,7 @@ class ParticipantController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="login")
+     * @Route("/login", name="participant_login")
      */
     public function login(): Response
     {
@@ -48,7 +49,7 @@ class ParticipantController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/logout", name="participant_logout")
      */
     public function logout(): Response  {    }
 }
