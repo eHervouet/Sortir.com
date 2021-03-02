@@ -34,14 +34,18 @@
                     <ul class="navbar-nav ml-auto">
                         {% if is_granted("ROLE_USER") %}
                             <li class={% if path("logout") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
-                                <a class="nav-link" href="{{ path("logout") }}" title="Bucket-List | Logout">Logout <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
+                                <a class="nav-link" href="{{ path("logout") }}" title="Bucket-List | Logout">Se déconnecter <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
+                            </li>
+                        {% elseif is_granted("ROLE_ADMIN") %}
+                            <li class={% if path("participant_register") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                                <a class="nav-link" href="{{ path("participant_register") }}" title="Bucket-List | Register">Créer un compte<span class="sr-only"></span></a>
+                            </li>
+                            <li class={% if path("logout") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                            <a class="nav-link" href="{{ path("logout") }}" title="Bucket-List | Logout">Se déconnecter <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
                             </li>
                         {% else %}
-                            <li class={% if path("participant_register") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
-                                <a class="nav-link" href="{{ path("participant_register") }}" title="Bucket-List | Register">Register<span class="sr-only"></span></a>
-                            </li>
                             <li class={% if path("login") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
-                                <a class="nav-link" href="{{ path("login") }}" title="Bucket-List | Login">Login <i class="fa fa-sign-in" aria-hidden="true"></i><span class="sr-only"></span></a>
+                                <a class="nav-link" href="{{ path("login") }}" title="Bucket-List | Login">Connexion <i class="fa fa-sign-in" aria-hidden="true"></i><span class="sr-only"></span></a>
                             </li>
                         {% endif %}
                     </ul>
