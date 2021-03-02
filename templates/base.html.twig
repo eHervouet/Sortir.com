@@ -15,6 +15,8 @@
         <script>{% block javascripts %}{% endblock %}</script>
     </head>
     <body>
+        {% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+
         {% block entete %}
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="{{ path('home') }}">Sortir.com</a>
@@ -26,6 +28,26 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Sorties <span class="sr-only">(current)</span></a>
                         </li>
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                    <ul class="navbar-nav ml-auto">
+                        {% if is_granted("ROLE_USER") %}
+                            <li class={% if path("logout") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                                <a class="nav-link" href="{{ path("logout") }}" title="Bucket-List | Logout">Se déconnecter <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
+                            </li>
+                        {% elseif is_granted("ROLE_ADMIN") %}
+                            <li class={% if path("participant_register") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                                <a class="nav-link" href="{{ path("participant_register") }}" title="Bucket-List | Register">Créer un compte<span class="sr-only"></span></a>
+                            </li>
+                            <li class={% if path("logout") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                            <a class="nav-link" href="{{ path("logout") }}" title="Bucket-List | Logout">Se déconnecter <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
+                            </li>
+                        {% else %}
+                            <li class={% if path("login") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                                <a class="nav-link" href="{{ path("login") }}" title="Bucket-List | Login">Connexion <i class="fa fa-sign-in" aria-hidden="true"></i><span class="sr-only"></span></a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </nav>
