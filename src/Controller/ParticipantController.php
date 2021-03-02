@@ -23,6 +23,9 @@ class ParticipantController extends AbstractController
 
         $registerForm->handleRequest($request);
         if($registerForm->isSubmitted() && $registerForm->isValid()){
+            $participant->setAdministrateur(false);
+            $participant->setActif(true);
+            $participant->setSitesNoSite(0);
             //hashage mdp
             $mdp_hashed = $encoder->encodePassword($participant, $participant->getPassword());
             $participant->setMotDePasse($mdp_hashed);

@@ -209,18 +209,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
          return $this->motDePasse;
      }
 
-     public function getSalt()
-     {
-         return null;
-     }
+
 
      public function getUsername()
      {
          return $this->pseudo;
      }
 
-     public function eraseCredentials()
-     {
-
-     }
+     public function eraseCredentials() {}
+     public function getSalt() { return null; }
  }
