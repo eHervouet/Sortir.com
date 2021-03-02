@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\Participants;
 use App\Form\RegisterType;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class ParticipantController extends AbstractController
 {
@@ -43,9 +44,12 @@ class ParticipantController extends AbstractController
     /**
      * @Route("/login", name="login")
      */
-    public function login(): Response
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render("participants/login.html.twig");
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render("participants/login.html.twig", ['error' => $error, 'lastUsername' => $lastUsername]);
     }
 
     /**

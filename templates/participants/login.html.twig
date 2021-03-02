@@ -1,11 +1,23 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+    {{ parent() }}
+    #formLog {
+        max-width: 35%;
+        margin: 0 auto;
+        position: relative;
+        top: 10em
+    }
+    #error {
+        color: red;
+    }
+{% endblock %}
 {% block body %}
-<div style="max-width: 35%; margin: 0 auto; position: relative; top: 10em">
+<div id="formLog">
+    {% if error is not null %}<span id="error">Votre identifiant ou votre mot de passe est incorrect.</span>{% endif %}
     <form method="POST">
         <div class="form-group">
             <label for="username">Pseudo</label>
-            <input type="text" name="_username" class="form-control" id="username" placeholder="Votre pseudo">
+            <input type="text" name="_username" class="form-control" id="username" placeholder="Votre pseudo" {% if lastUsername is defined %}value="{{ lastUsername }}"{% endif %}>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
