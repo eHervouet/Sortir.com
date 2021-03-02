@@ -34,15 +34,15 @@
                 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                     <ul class="navbar-nav ml-auto">
                         {% if is_granted("ROLE_USER") %}
-                            <li class={% if path("participant_logout") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
-                                <a class="nav-link" href="{{ path("participant_logout") }}" title="Bucket-List | Logout">Logout <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
+                            <li class={% if path("logout") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                                <a class="nav-link" href="{{ path("logout") }}" title="Bucket-List | Logout">Logout <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
                             </li>
                         {% else %}
                             <li class={% if path("participant_register") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
                                 <a class="nav-link" href="{{ path("participant_register") }}" title="Bucket-List | Register">Register<span class="sr-only"></span></a>
                             </li>
-                            <li class={% if path("participant_login") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
-                                <a class="nav-link" href="{{ path("participant_login") }}" title="Bucket-List | Login">Login <i class="fa fa-sign-in" aria-hidden="true"></i><span class="sr-only"></span></a>
+                            <li class={% if path("login") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                                <a class="nav-link" href="{{ path("login") }}" title="Bucket-List | Login">Login <i class="fa fa-sign-in" aria-hidden="true"></i><span class="sr-only"></span></a>
                             </li>
                         {% endif %}
                     </ul>

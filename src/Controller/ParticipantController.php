@@ -41,7 +41,7 @@ class ParticipantController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="participant_login")
+     * @Route("/login", name="login")
      */
     public function login(): Response
     {
@@ -49,7 +49,9 @@ class ParticipantController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="participant_logout")
+     * @Route("/logout", name="logout")
      */
-    public function logout(): Response  {    }
+    public function logout(): Response  {
+        return $this->redirectToRoute("home");
+    }
 }
