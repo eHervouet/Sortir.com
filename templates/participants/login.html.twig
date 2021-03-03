@@ -31,11 +31,9 @@
 {% endblock %}
 
 {% block javascripts %}
-<script>
     window.onload = function(){
         $('form').attr('autocomplete','off');
     }
-</script>
 {% endblock javascripts %}
 
 {% block title %}{{ parent() }} | Login{% endblock %}

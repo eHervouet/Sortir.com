@@ -6,7 +6,10 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <style>{% block stylesheets %}
             body{
                 background-color: #C6C6C6;
@@ -33,15 +36,21 @@
                 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                     <ul class="navbar-nav ml-auto">
                         {% if is_granted("ROLE_USER") %}
+                            <li class={% if path("my_profil") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                                <a class="nav-link" href="{{ path("my_profil") }}" title="Sortir.com | Profil">Mon Profil <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
+                            </li>
                             <li class={% if path("logout") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
-                                <a class="nav-link" href="{{ path("logout") }}" title="Bucket-List | Logout">Se déconnecter <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
+                                <a class="nav-link" href="{{ path("logout") }}" title="Sortir.com | Se déconnecter">Se déconnecter <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
                             </li>
                         {% elseif is_granted("ROLE_ADMIN") %}
                             <li class={% if path("participant_register") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
-                                <a class="nav-link" href="{{ path("participant_register") }}" title="Bucket-List | Register">Créer un compte<span class="sr-only"></span></a>
+                                <a class="nav-link" href="{{ path("participant_register") }}" title="Sortir.com | Register">Créer un compte<span class="sr-only"></span></a>
+                            </li>
+                            <li class={% if path("my_profil") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                                <a class="nav-link" href="{{ path("my_profil") }}" title="Sortir.com | Profil">Mon Profil <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
                             </li>
                             <li class={% if path("logout") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
-                            <a class="nav-link" href="{{ path("logout") }}" title="Bucket-List | Logout">Se déconnecter <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
+                                <a class="nav-link" href="{{ path("logout") }}" title="Sortir.com | Logout">Se déconnecter <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
                             </li>
                         {% else %}
                             <li class={% if path("login") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
@@ -51,6 +60,13 @@
                     </ul>
                 </div>
             </nav>
+
+            {% for message in app.flashes('sucess') %}
+                <div class="alert alert-success" style="text-align: center;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
         {% endblock %}
         {% block body %}{% endblock %}
     </body>

@@ -79,9 +79,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
     private $actif;
 
     /**
-     * @var int
+     * @var \Sites
      *
-     * @ORM\Column(name="sites_no_site", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Sites")
+     * @ORM\JoinColumn(name="sites_no_site", referencedColumnName="no_site")
      */
     private $sitesNoSite;
 
@@ -186,12 +187,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
         return $this;
     }
 
-    public function getSitesNoSite(): ?int
+    public function getSitesNoSite(): ?Sites
     {
         return $this->sitesNoSite;
     }
 
-    public function setSitesNoSite(int $sitesNoSite): self
+    public function setSitesNoSite(Sites $sitesNoSite): self
     {
         $this->sitesNoSite = $sitesNoSite;
 

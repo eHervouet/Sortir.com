@@ -10,55 +10,77 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class RegisterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('pseudo', null, [
-            'label' => 'Pseudo',
+        ->add('pseudo', TextType::class, [
+            'label' => 'Pseudo :    ',
             'attr' =>
-                ['placeholder' => 'Votre pseudo']
+                ['placeholder' => '']
         ])
-        ->add('nom', null, [
-            'label' => 'Nom',
+        ->add('prenom', TextType::class, [
+            'label' => 'Prénom :',
             'attr' =>
-                ['placeholder' => 'Votre nom']
+                ['placeholder' => '']
         ])
-        ->add('prenom', null, [
-            'label' => 'Prénom',
+        ->add('nom', TextType::class, [
+            'label' => 'Nom :',
             'attr' =>
-                ['placeholder' => 'Votre prénom']
+                ['placeholder' => '']
+        ])
+        ->add('telephone', TelType::class, [
+            'label' => 'Téléphone :',
+            'attr' =>
+                ['placeholder' => '+33']
+        ])
+        ->add('mail', EmailType::class, [
+            'label' => 'Email :',
+            'attr' =>
+                ['placeholder' => 'exemple@domaine.ex']
         ])
         ->add('motDePasse', RepeatedType::class, [
             'type' => PasswordType::class,
             'invalid_message' => 'Les mots de passes doivent être identiques dans les 2 champs',
             'required' => true,
             'first_options'  => [
-                'label' => 'Mot de passe',
+                'label' => 'Mot de passe :',
                 'attr' =>
                     ['placeholder' => '********']
             ],
             'second_options' => [
-                'label' => 'Valider le mot de passe',
+                'label' => 'Confirmation :',
                 'attr' =>
                     ['placeholder' => '********']
             ],
         ])
-        ->add('mail', EmailType::class, [
-            'label' => 'Adresse mail',
-            'attr' =>
-                ['placeholder' => 'exemple@domaine.ex']
+        ->add('sitesNoSite', null, [
+            'label' => 'Site de rattachement :',
+            'choice_label' => 'nomSite',
+            'placeholder' => false,
         ])
-        ->add('telephone', TelType::class, [
-            'label' => 'Numéro de téléphone',
-            'attr' =>
-                ['placeholder' => '+33000000000']
-        ])
-        ->add('add', SubmitType::class, [
-            'label' => 'S\'enregistrer'
+        ->add('profilPicture', FileType::class, [
+            'label' => 'Ma photo :',
+                // unmapped means that this field is not associated to any entity property
+                'mapped' => false,
+                // make it optional so you don't have to re-upload the PDF file
+                // every time you edit the Product details
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'img/png',
+                            'img/jpg',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid profil picture (jpg/png)',
+                    ])
+                ],
         ]);
     }
 

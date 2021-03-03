@@ -20,13 +20,12 @@ class ParticipantController extends AbstractController
     public function register(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder ): Response
     {
         $participant = new Participants();
-        $registerForm = $this->createForm(RegisterType::class, $participant);
+        $registerForm = $this->createForm(RegisterType::class, $participant, array('method' => 'POST'));
 
         $registerForm->handleRequest($request);
         if($registerForm->isSubmitted() && $registerForm->isValid()){
             $participant->setAdministrateur(false);
             $participant->setActif(true);
-            $participant->setSitesNoSite(0);
             //hashage mdp
             $mdp_hashed = $encoder->encodePassword($participant, $participant->getPassword());
             $participant->setMotDePasse($mdp_hashed);
@@ -39,6 +38,41 @@ class ParticipantController extends AbstractController
         return $this->render("participants/register.html.twig",[
             "registerForm" => $registerForm->createView()
         ]);
+    }
+
+    /**
+     * @Route("/my-profil", name="my_profil")
+     */
+    public function myProfil(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder) : Response
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        //l'utilisateur n'est pas connecté
+        if(!$user)
+            return $this->redirectToRoute("home");
+
+        $participant = $em->getRepository(Participants::class)->find($user->getNoParticipant());
+        if(!$participant)
+            throw new NotFoundHttpException('Profil not found');
+
+        $profilForm = $this->createForm(RegisterType::class, $participant, array('method' => 'POST'));
+        $profilForm->handleRequest($request);
+        if($profilForm->isSubmitted() && $profilForm->isValid()){
+            $mdp_hashed = $encoder->encodePassword($participant, $participant->getPassword());
+            $participant->setMotDePasse($mdp_hashed);
+            $em->persist($participant);
+            $em->flush();
+
+            $this->addFlash(
+                'sucess',
+                'Modifications effectuées'
+            );
+
+            return $this->redirectToRoute("my_profil");
+        }
+        return $this->render("participants/my_profil.html.twig",[
+            "profilForm" => $profilForm->createView()
+        ]);
+        
     }
 
     /**
