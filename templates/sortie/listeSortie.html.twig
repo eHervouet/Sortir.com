@@ -18,14 +18,16 @@
         </thead>
         <tbody>
         <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            {% for sortie in listeSorties %}
+            <td>{{ sortie.nom }}</td>
+            <td>{{ sortie.datedebut|date('m/d/Y') }}</td>
+            <td>{{ sortie.datecloture|date('m/d/Y') }}</td>
+            <td>?/{{ sortie.nbinscriptionsmax }}</td>
+            <td>{{ sortie.etatsnoetat }}</td>
+            <td>?</td>
+            <td>{{ sortie.nomorganisateur }}</td>
+            <td><a href="{{ path('afficherSortie', { 'noSortie': sortie.nosortie }) }}">Afficher</a></td>
+            {% endfor %}
         </tr>
         </tbody>
     </table>

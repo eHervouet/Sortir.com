@@ -11,6 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+
 
 class SortieController extends AbstractController
 {
@@ -19,7 +21,21 @@ class SortieController extends AbstractController
      */
     public function liste(): Response
     {
-        return $this->render('sortie/listeSortie.html.twig');
+        $propertyAccessor = PropertyAccess::createPropertyAccessor();
+        $sortieRepo = $this->getDoctrine()->getRepository(Sorties::class);
+        $participantRepo = $this->getDoctrine()->getRepository(Participants::class);
+        $listeSorties = $sortieRepo->findAll();
+        foreach($listeSorties as $sortie) {
+            // Récupération du nom et du prénom de l'organisateur
+            $orga = $participantRepo->findOneBy(['noParticipant' => $propertyAccessor->getValue($sortie, 'organisateur')]);
+            $sortie->nomorganisateur = $orga->getNom().' '.$orga->getPrenom();
+
+            // Récupération du nombre d'inscrit à la sortie
+
+        }
+        return $this->render('sortie/listeSortie.html.twig', [
+            'listeSorties' => $listeSorties
+        ]);
     }
 
     /**
@@ -41,6 +57,19 @@ class SortieController extends AbstractController
         }
         return $this->render('sortie/creerSortie.html.twig',[
             "createSortieForm" => $createSortieForm->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/afficherSortie/{noSortie}", name="afficherSortie")
+     */
+    public function afficherSortie(Request $request): Response
+    {
+        $noSortie = $request->attributes->get('noSortie');
+        $sortieRepo = $this->getDoctrine()->getRepository(Sorties::class);
+        $sortie = $sortieRepo->findOneBy(['noSortie' => $noSortie]);
+        return $this->render('sortie/afficherSortie.html.twig', [
+            'sortie' => $sortie
         ]);
     }
 }
