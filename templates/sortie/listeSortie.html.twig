@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Liste des sorties{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nom de la sortie</th>
+            <th scope="col">Date de la sortie</th>
+            <th scope="col">Clôture</th>
+            <th scope="col">inscrits/places</th>
+            <th scolpe="col">Etat</th>
+            <th scolpe="col">Inscrit</th>
+            <th scolpe="col">Organisateur</th>
+            <th scolpe="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

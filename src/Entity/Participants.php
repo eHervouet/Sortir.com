@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * Participants
  *
  * @ORM\Table(name="participants", uniqueConstraints={@ORM\UniqueConstraint(name="participants_pseudo_uk", columns={"pseudo"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ParticipantsRepository")
  */
  class Participants implements UserInterface
 {
