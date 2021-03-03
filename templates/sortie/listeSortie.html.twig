@@ -22,9 +22,9 @@
             <td>{{ sortie.nom }}</td>
             <td>{{ sortie.datedebut|date('m/d/Y') }}</td>
             <td>{{ sortie.datecloture|date('m/d/Y') }}</td>
-            <td>?/{{ sortie.nbinscriptionsmax }}</td>
-            <td>{{ sortie.etatsnoetat }}</td>
-            <td>?</td>
+            <td>{{ sortie.nbinscrit }}/{{ sortie.nbinscriptionsmax }}</td>
+            <td>{{ sortie.libelleetat }}</td>
+            <td>{% if sortie.estinscrit %}X{% else %}{% endif %}</td>
             <td>{{ sortie.nomorganisateur }}</td>
             <td><a href="{{ path('afficherSortie', { 'noSortie': sortie.nosortie }) }}">Afficher</a></td>
             {% endfor %}

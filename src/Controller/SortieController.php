@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Etats;
+use App\Entity\Inscriptions;
 use App\Entity\Sorties;
 use App\Entity\Participants;
 use App\Form\CreateSortieType;
@@ -19,11 +21,13 @@ class SortieController extends AbstractController
     /**
      * @Route("/sorties", name="sorties")
      */
-    public function liste(): Response
+    public function liste(UserInterface $user): Response
     {
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
         $sortieRepo = $this->getDoctrine()->getRepository(Sorties::class);
         $participantRepo = $this->getDoctrine()->getRepository(Participants::class);
+        $inscriptionRepo = $this->getDoctrine()->getRepository(Inscriptions::class);
+        $etatRepo = $this->getDoctrine()->getRepository(Etats::class);
         $listeSorties = $sortieRepo->findAll();
         foreach($listeSorties as $sortie) {
             // Récupération du nom et du prénom de l'organisateur
@@ -31,7 +35,17 @@ class SortieController extends AbstractController
             $sortie->nomorganisateur = $orga->getNom().' '.$orga->getPrenom();
 
             // Récupération du nombre d'inscrit à la sortie
+            $nbInscrit = $inscriptionRepo->findBy(['sortiesNoSortie' => $propertyAccessor->getValue($sortie, 'nosortie')]);
+            $sortie->nbinscrit = count($nbInscrit);
 
+            // Récupération du libelle de l'état
+            $libelleEtat = $etatRepo->findOneBy(['noEtat' => $propertyAccessor->getValue($sortie, 'etatsNoEtat')]);
+            $sortie->libelleetat = $libelleEtat->getLibelle();
+
+            // L'utilisateur actuel est inscrit ?
+            $actualUser = $participantRepo->findOneBy(['pseudo' => $user->getUsername()]);
+            $estInscrit = $inscriptionRepo->findOneBy(['participantsNoParticipant' => $actualUser->getNoParticipant(), 'sortiesNoSortie' => $propertyAccessor->getValue($sortie, 'nosortie')]);
+            empty($estInscrit) ? $sortie->estinscrit = false : $sortie->estinscrit = true;
         }
         return $this->render('sortie/listeSortie.html.twig', [
             'listeSorties' => $listeSorties
