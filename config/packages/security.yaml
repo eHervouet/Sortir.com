@@ -14,10 +14,14 @@ security:
     #encoders:
     #App\Entity\Participants:
     #algorithm: bcrypt
-
+    enable_authenticator_manager: true
 
     providers:
         our_db_provider:
+            entity:
+                class: App\Entity\Participants
+                property: pseudo
+        app_user_provider:
             entity:
                 class: App\Entity\Participants
                 property: pseudo
@@ -27,15 +31,20 @@ security:
             #security: false
         main:
             pattern: ^/
-            #lazy: true
+            lazy: true
             provider: our_db_provider
-            anonymous: ~
             form-login:
                 login_path: login
                 check_path: login
             #logout_on_user_change: true
             logout:
                 path: logout
+            remember_me:
+                name: 'REMEMBERME'
+                secret: '%kernel.secret%'
+                lifetime: 604800  #1 week in seconds
+                path: /
+                secure: true
     encoders:
         App\Entity\Participants:
             algorithm: bcrypt
