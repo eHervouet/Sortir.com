@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% form_theme createLieuForm 'bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block title %}{{ parent() }} | Créer un Lieu{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    #formCreate{
+        max-width: 60%;
+        margin: 0 auto;
+        position: relative;
+        top: 5em;
+    }
+{% endblock %}
+
+{% block body %}
+<div id="formCreate">
+    {{  form_start(createLieuForm) }}
+
+    {{ form_widget(createLieuForm) }}
+
+    {{  form_end(createLieuForm) }}
+</div>
+{% endblock %}

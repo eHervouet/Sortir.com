@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Liste des Lieux{% endblock %}
+
+{% block body %}
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nom du Lieu</th>
+                <th scope="col">Rue</th>
+                <th scope="col">Latitude</th>
+                <th scope="col">Longitude</th>
+                <th scope="col">Ville</th>
+            </tr>
+            </thead>
+            <tbody>
+    {% for lieu in lieux %}
+            <tr>
+                <td>{{ lieu.nomLieu }}</td>
+                <td>{{ lieu.rue }}</td>
+                <td>{{ lieu.latitude }}</td>
+                <td>{{ lieu.longitude }}</td>
+                <td>{{  lieu.villesNoVille.nomVille }}</td>
+            </tr>
+    {% endfor %}
+            </tbody>
+        </table>
+
+
+
+{% endblock %}
