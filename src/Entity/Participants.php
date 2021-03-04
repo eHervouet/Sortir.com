@@ -4,12 +4,17 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Participants
  *
  * @ORM\Table(name="participants", uniqueConstraints={@ORM\UniqueConstraint(name="participants_pseudo_uk", columns={"pseudo"})})
  * @ORM\Entity(repositoryClass="App\Repository\ParticipantsRepository")
+ * @UniqueEntity(
+  *     fields={"pseudo"},
+  *     errorPath="pseudo",
+  *     message="Ce pseudo existe déjà, essayé d'en trouvé un autre.")
  */
  class Participants implements UserInterface
 {
