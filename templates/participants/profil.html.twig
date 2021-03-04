@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" style="margin: 5% auto;">
+      <img class="border" id="preview" src="{{ asset('uploads/profil_pictures/' ~ participant.profilPicture ~ '') }}" alt="photo de profil" width="240" height="240"/>
+    </div>
+    <div class="col-md-9">
+        <h2 style="text-align:center">{{ participant.pseudo }}</h2>
+        <form>
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Prénom :</label>
+              <div class="col-sm-9">
+                <label class="col-form-label">{{ participant.prenom }}</label>
+              </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Nom :</label>
+                <div class="col-sm-9">
+                  <label class="col-form-label">{{ participant.nom }}</label>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Téléphone :</label>
+                <div class="col-sm-9">
+                  <label class="col-form-label">{{ participant.telephone }}</label>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Email :</label>
+                <div class="col-sm-9">
+                  <label class="col-form-label">{{ participant.mail }}</label>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Site de rattachement :</label>
+                <div class="col-sm-9">
+                  <label class="col-form-label">{{ participant.sitesNoSite.nomSite }}</label>
+                </div>
+              </div>
+          </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block title %}{{ parent() }} | Profil de {% endblock %}

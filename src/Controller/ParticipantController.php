@@ -95,6 +95,17 @@ class ParticipantController extends AbstractController
     }
 
     /**
+     * @Route("/profil/{id}", name="profil", requirements={"id": "\d+"})
+     */
+    public function profil(int $id, EntityManagerInterface $em) : Response
+    {
+        $participant = $em->getRepository(Participants::class)->find($id);
+        if(!$participant)
+            throw new NotFoundHttpException('Participant not found');
+        return $this->render("participants/profil.html.twig", ['participant' => $participant]);
+    }
+
+    /**
      * @Route("/login", name="login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
