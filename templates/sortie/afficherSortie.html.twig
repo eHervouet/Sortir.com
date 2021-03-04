@@ -28,7 +28,7 @@
                     </tr>
                     <tr>
                         <td>Durée :</td>
-                        <td>{{ sortie.duree }}</td>
+                        <td>{{ sortie.duree }} minutes</td>
                     </tr>
                     <tr>
                         <td>Decription et infos :</td>
@@ -40,27 +40,27 @@
                 <table>
                     <tr>
                         <td>Lieu :</td>
-                        <td>{{ sortie.lieuxNoLieu }}</td>
+                        <td>{{ sortie.lieu.nomlieu }}</td>
                     </tr>
                     <tr>
                         <td>Rue :</td>
-                        <td>wip</td>
+                        <td>{{ sortie.lieu.rue }}</td>
                     </tr>
                     <tr>
                         <td>Ville :</td>
-                        <td>wip</td>
+                        <td>{{ sortie.lieu.laville.nomville }}</td>
                     </tr>
                     <tr>
                         <td>Code postal :</td>
-                        <td>wip</td>
+                        <td>{{ sortie.lieu.laville.codepostal }}</td>
                     </tr>
                     <tr>
                         <td>Latitude :</td>
-                        <td>wip</td>
+                        <td>{{ sortie.lieu.latitude }}</td>
                     </tr>
                     <tr>
                         <td>Longitude :</td>
-                        <td>wip</td>
+                        <td>{{ sortie.lieu.longitude }}</td>
                     </tr>
                 </table>
             </div>

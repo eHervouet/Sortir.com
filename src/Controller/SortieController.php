@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Etats;
 use App\Entity\Inscriptions;
+use App\Entity\Lieux;
 use App\Entity\Sorties;
 use App\Entity\Participants;
+use App\Entity\Villes;
 use App\Form\CreateSortieType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -79,9 +81,17 @@ class SortieController extends AbstractController
      */
     public function afficherSortie(Request $request): Response
     {
+        $propertyAccessor = PropertyAccess::createPropertyAccessor();
         $noSortie = $request->attributes->get('noSortie');
         $sortieRepo = $this->getDoctrine()->getRepository(Sorties::class);
+        $lieuRepo = $this->getDoctrine()->getRepository(Lieux::class);
+        $villeRepo = $this->getDoctrine()->getRepository(Villes::class);
         $sortie = $sortieRepo->findOneBy(['noSortie' => $noSortie]);
+
+        $lieu = $lieuRepo->findOneBy(['noLieu' => $propertyAccessor->getValue($sortie, 'lieuxNoLieu')]);
+        $ville = $villeRepo->findOneBy(['noVille' => $propertyAccessor->getValue($lieu, 'villesNoVille')]);
+        $lieu->laville = $ville;
+        $sortie->lieu = $lieu;
         return $this->render('sortie/afficherSortie.html.twig', [
             'sortie' => $sortie
         ]);
