@@ -86,6 +86,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
      */
     private $sitesNoSite;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="profilPicture", type="string", nullable=true)
+     */
+    private $profilPicture;
+
     public function getNoParticipant(): ?int
     {
         return $this->noParticipant;
@@ -199,6 +206,25 @@ use Symfony\Component\Security\Core\User\UserInterface;
         return $this;
     }
 
+    public function getProfilPicture(): ?string
+    {
+        $path = "";
+        if(is_null($this->profilPicture)){
+            $path = 'default-pp.png';
+        } 
+        else{
+            $path = $this->profilPicture;
+        }
+
+        return $path;
+    }
+
+    public function setProfilPicture(string $profilPicture): self
+    {
+        $this->profilPicture = $profilPicture;
+
+        return $this;
+    }
 
      public function getRoles()
      {

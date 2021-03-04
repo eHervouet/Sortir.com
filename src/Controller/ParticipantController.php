@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\Participants;
 use App\Form\RegisterType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Finder\Finder;
 
 class ParticipantController extends AbstractController
 {
@@ -21,6 +22,7 @@ class ParticipantController extends AbstractController
     {
         $participant = new Participants();
         $registerForm = $this->createForm(RegisterType::class, $participant, array('method' => 'POST'));
+        $registerForm->remove('profilPicture');
 
         $registerForm->handleRequest($request);
         if($registerForm->isSubmitted() && $registerForm->isValid()){
@@ -59,6 +61,21 @@ class ParticipantController extends AbstractController
         if($profilForm->isSubmitted() && $profilForm->isValid()){
             $mdp_hashed = $encoder->encodePassword($participant, $participant->getPassword());
             $participant->setMotDePasse($mdp_hashed);
+
+            
+            // le téléchargement d'une photo de profil n'est pas obligatoire
+            // donc on lance le process d'update' seulement si le fichier est fourni
+            $ppFile = $profilForm['profilPicture']->getData();
+            if ($ppFile) {
+                //on force le format png pour écraser la photo de profil précédente
+                $newFilename = $participant->getNoParticipant().'-profil-picture.png'; 
+                $ppFile->move(
+                       $this->getParameter('profil_pictures_directory'),
+                       $newFilename
+                   );                
+                $participant->setProfilPicture($newFilename);
+            }
+            
             $em->persist($participant);
             $em->flush();
 
@@ -66,10 +83,12 @@ class ParticipantController extends AbstractController
                 'sucess',
                 'Modifications effectuées'
             );
-
+            //flash fonctionne que via redirection
             return $this->redirectToRoute("my_profil");
         }
+
         return $this->render("participants/my_profil.html.twig",[
+            "ppPath" => $participant->getProfilPicture(),
             "profilForm" => $profilForm->createView()
         ]);
         

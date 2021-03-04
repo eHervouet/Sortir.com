@@ -65,18 +65,18 @@ class RegisterType extends AbstractType
             'placeholder' => false,
         ])
         ->add('profilPicture', FileType::class, [
-            'label' => 'Ma photo :',
-                // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
-                // make it optional so you don't have to re-upload the PDF file
+                'label' => 'Ma photo :',
+                // make it optional so you don't have to re-upload the picture
                 // every time you edit the Product details
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024k',
+                        'maxSize' => '8000000k',
+                        'maxSizeMessage' => 'Volume maximum dépassé ( {{ size }} > {{ limit }}',
                         'mimeTypes' => [
-                            'img/png',
-                            'img/jpg',
+                            'image/png',
+                            'image/jpg',
                         ],
                         'mimeTypesMessage' => 'Please upload a valid profil picture (jpg/png)',
                     ])

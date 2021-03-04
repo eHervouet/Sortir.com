@@ -15,3 +15,7 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 .idea/workspace.xml
+
+/public/uploads/profil_pictures/*
+### except default profil picture file ###
+!/public/uploads/profil_pictures/default-pp.png
