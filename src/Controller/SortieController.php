@@ -16,6 +16,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 
 class SortieController extends AbstractController
@@ -23,7 +24,7 @@ class SortieController extends AbstractController
     /**
      * @Route("/sorties", name="sorties")
      */
-    public function liste(UserInterface $user): Response
+    public function liste(TokenStorageInterface $tokenStorage): Response
     {
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
         $sortieRepo = $this->getDoctrine()->getRepository(Sorties::class);
@@ -45,9 +46,15 @@ class SortieController extends AbstractController
             $sortie->libelleetat = $libelleEtat->getLibelle();
 
             // L'utilisateur actuel est inscrit ?
-            $actualUser = $participantRepo->findOneBy(['pseudo' => $user->getUsername()]);
-            $estInscrit = $inscriptionRepo->findOneBy(['participantsNoParticipant' => $actualUser->getNoParticipant(), 'sortiesNoSortie' => $propertyAccessor->getValue($sortie, 'nosortie')]);
-            empty($estInscrit) ? $sortie->estinscrit = false : $sortie->estinscrit = true;
+            if($tokenStorage->getToken() != null) {
+                $user=$tokenStorage->getToken()->getUser();
+                $actualUser = $participantRepo->findOneBy(['pseudo' => $user->getUsername()]);
+                $estInscrit = $inscriptionRepo->findOneBy(['participantsNoParticipant' => $actualUser->getNoParticipant(), 'sortiesNoSortie' => $propertyAccessor->getValue($sortie, 'nosortie')]);
+                empty($estInscrit) ? $sortie->estinscrit = false : $sortie->estinscrit = true;
+            } else {
+                $sortie->estinscrit = false;
+            }
+
         }
         return $this->render('sortie/listeSortie.html.twig', [
             'listeSorties' => $listeSorties
