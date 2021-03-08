@@ -1,93 +1,100 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Sortir.com{% endblock %}</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-        <style>{% block stylesheets %}
-            body{
-                background-color: #C6C6C6;
-            }
-            a {
-                color: black;
-            }
-        {% endblock %}</style>
-        <script>{% block javascripts %}{% endblock %}</script>
-    </head>
-    <body>
-        {% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
-
-        {% block entete %}
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="{{ path('home') }}">Sortir.com</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Sorties
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ path('sorties') }}">Liste des sorties</a>
-                                {% if app.user is not null %}
-                                    <a class="dropdown-item" href="{{ path('creerSortie') }}">Créer une sortie</a>
-                                {% endif %}
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Lieux
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ path('lieux') }}">Liste des Lieux</a>
-                                {% if app.user is not null %}
-                                <a class="dropdown-item" href="{{ path('creerLieu') }}">Créer un lieu</a>
-                                {% endif %}
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
-                        {% if app.user is null %}
-                            <li class={% if path("my_profil") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
-                                <a class="nav-link" href="{{ path("login") }}" title="Sortir.com | Profil">Connexion <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
-                            </li>
-                        {% else %}
-                            {% if is_granted("ROLE_USER") %}
-                                <li class={% if path("my_profil") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
-                                <a class="nav-link" href="{{ path("my_profil") }}" title="Sortir.com | Profil">Mon Profil <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
-                                </li>
-                            {% elseif is_granted("ROLE_ADMIN") %}
-                                <li class={% if path("participant_register") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
-                                    <a class="nav-link" href="{{ path("participant_register") }}" title="Sortir.com | Créer un compte">Créer un compte<span class="sr-only"></span></a>
-                                </li>
-                                <li class={% if path("my_profil") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
-                                    <a class="nav-link" href="{{ path("my_profil") }}" title="Sortir.com | Profil">Mon Profil <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
-                                </li>
-                            {% endif %}
-                            <li class={% if path("logout") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
-                                <a class="nav-link" href="{{ path("logout") }}" title="Sortir.com | Se déconnecter">Se déconnecter <i class="fa fa-sign-out" aria-hidden="true"></i><span class="sr-only"></span></a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </nav>
-
-            {% for message in app.flashes('sucess') %}
-                <div class="alert alert-success" style="text-align: center;">
-                    {{ message }}
-                </div>
-            {% endfor %}
-
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Sortir.com{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
+    <style>
+        {% block stylesheets %}
         {% endblock %}
-        {% block body %}{% endblock %}
-    </body>
+    </style>
+    <script>
+        {% block javascripts %}
+        {% endblock %}
+    </script>
+</head>
+
+<body>
+    {% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+
+    {% block entete %}
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="{{ path('home') }}">Sortir.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sorties
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% if app.user is not null %}
+                        <a class="dropdown-item" href="{{ path('creerSortie') }}">Créer une sortie</a>
+                        {% endif %}
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lieux
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('lieux') }}">Liste des Lieux</a>
+                        {% if app.user is not null %}
+                        <a class="dropdown-item" href="{{ path('creerLieu') }}">Créer un lieu</a>
+                        {% endif %}
+                    </div>
+                </li>
+                {% if app.user is null %}
+                <li class={% if path("my_profil") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                    <a class="nav-link" href="{{ path('login') }}" title="Sortir.com | Profil">Connexion<span
+                            class="sr-only"></span></a>
+                </li>
+                {% else %}
+                {% if is_granted("ROLE_USER") %}
+                <li class={% if path("my_profil") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                    <a class="nav-link" href="{{ path('my_profil') }}" title="Sortir.com | Profil">Mon Profil<span
+                            class="sr-only"></span></a>
+                </li>
+                {% elseif is_granted("ROLE_ADMIN") %}
+                <li class={% if path("participant_register") in currentPath %} "nav-item active" {% else %} "nav-item"
+                    {% endif %}>
+                    <a class="nav-link" href="{{ path('participant_register') }}"
+                        title="Sortir.com | Créer un compte">Créer un compte<span class="sr-only"></span></a>
+                </li>
+                <li class={% if path("my_profil") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                    <a class="nav-link" href="{{ path('my_profil') }}" title="Sortir.com | Profil">Mon Profil<span
+                            class="sr-only"></span></a>
+                </li>
+                {% endif %}
+                <li class={% if path("logout") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
+                    <a class="nav-link" href="{{ path('logout') }}" title="Sortir.com | Se déconnecter">Se
+                        déconnecter<span class="sr-only"></span></a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    {% for message in app.flashes('sucess') %}
+    <div class="alert alert-success" style="text-align: center;">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endblock %}
+
+    {% block body %}{% endblock %}
+</body>
+
 </html>
