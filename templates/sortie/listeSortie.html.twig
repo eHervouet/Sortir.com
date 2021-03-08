@@ -26,7 +26,7 @@
                         <td>{{ sortie.nbinscrit }}/{{ sortie.nbinscriptionsmax }}</td>
                         <td>{{ sortie.libelleetat }}</td>
                         <td>{% if sortie.estinscrit %}X{% else %}{% endif %}</td>
-                        <td>{{ sortie.nomorganisateur }}</td>
+                        <td><a href="{{ path('profil', {'id': sortie.numorganisateur }) }}">{{ sortie.nomorganisateur }}</a></td>
                         <td><a href="{{ path('afficherSortie', { 'noSortie': sortie.nosortie }) }}">Afficher</a></td>
                     </tr>
                     {% endfor %}

@@ -36,6 +36,7 @@ class SortieController extends AbstractController
             // Récupération du nom et du prénom de l'organisateur
             $orga = $participantRepo->findOneBy(['noParticipant' => $propertyAccessor->getValue($sortie, 'organisateur')]);
             $sortie->nomorganisateur = $orga->getNom().' '.$orga->getPrenom();
+            $sortie->numorganisateur = $orga->getNoParticipant();
 
             // Récupération du nombre d'inscrit à la sortie
             $nbInscrit = $inscriptionRepo->findBy(['sortiesNoSortie' => $propertyAccessor->getValue($sortie, 'nosortie')]);
