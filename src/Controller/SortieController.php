@@ -59,20 +59,32 @@ class SortieController extends AbstractController
      */
     public function creer(Request $request, EntityManagerInterface $em, UserInterface $user): Response
     {
+        $dump ="";
         $sortie = new Sorties();
-        $createSortieForm = $this->createForm(CreateSortieType::class, $sortie);
+        $createSortieForm = $this->createForm(CreateSortieType::class);
         $createSortieForm->handleRequest($request);
         if($createSortieForm->isSubmitted() && $createSortieForm->isValid()) {
+            $data = $createSortieForm->getData();
+
+            // Récupération du nom de l'utilisateur
             $participantRepo = $this->getDoctrine()->getRepository(Participants::class);
             $participant = $participantRepo->findOneBy(['pseudo' => $user->getUsername()]);
+            //$dump = var_dump($data);
+            $sortie->setNom($data['nom']);
+            $sortie->setDatedebut($data['datedebut']);
+            $sortie->setDatecloture($data['datecloture']);
+            $sortie->setNbinscriptionsmax($data['nbinscriptionsmax']);
+            $sortie->setDuree($data['duree']);
+            $sortie->setDescriptioninfos($data['descriptioninfos']);
+            $sortie->setLieuxNoLieu($data['lieuxnolieu']->getNoLieu());
             $sortie->setOrganisateur($participant->getNoParticipant());
             $sortie->setEtatsNoEtat(1);
-            $sortie->setLieuxNoLieu(1);
             $em->persist($sortie);
             $em->flush();
         }
         return $this->render('sortie/creerSortie.html.twig',[
-            "createSortieForm" => $createSortieForm->createView()
+            "createSortieForm" => $createSortieForm->createView(),
+            'dump' => $dump
         ]);
     }
 

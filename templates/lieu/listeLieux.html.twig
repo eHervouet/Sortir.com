@@ -3,8 +3,9 @@
 {% block title %}{{ parent() }} | Liste des Lieux{% endblock %}
 
 {% block body %}
-
-        <table class="table">
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <table class="table table-responsive">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">Nom du Lieu</th>
@@ -21,12 +22,11 @@
                 <td>{{ lieu.rue }}</td>
                 <td>{{ lieu.latitude }}</td>
                 <td>{{ lieu.longitude }}</td>
-                <td>{{  lieu.villesNoVille.nomVille }}</td>
+                <td>{% if lieu.villeNom is defined %}{{ lieu.villeNom }}{% endif %}</td>
             </tr>
     {% endfor %}
             </tbody>
         </table>
-
-
-
+    </div>
+</div>
 {% endblock %}

@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="344bf3a9-4da9-4909-90b5-e7529be905cf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/LieuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LieuController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SortieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SortieController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/sortie/afficherSortie.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/sortie/afficherSortie.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Lieux.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Lieux.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Participants.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Participants.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/CreateLieuType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CreateLieuType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/CreateSortieType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CreateSortieType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/lieu/creerLieu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lieu/creerLieu.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/lieu/listeLieux.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/lieu/listeLieux.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/sortie/creerSortie.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/sortie/creerSortie.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/sortie/listeSortie.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/sortie/listeSortie.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/SortieController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="132">
+              <caret line="23" column="39" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="39" />
               <folding>
                 <element signature="e#34#55#0#PHP" expanded="true" />
               </folding>
@@ -29,19 +39,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/Villes.php">
+        <entry file="file://$PROJECT_DIR$/templates/sortie/listeSortie.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+            <state relative-caret-position="510">
+              <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="43" column="95" selection-start-line="43" selection-start-column="95" selection-end-line="43" selection-end-column="95" />
+              <folding>
+                <element signature="e#2497#2504#0#Twig" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/Lieux.php">
+        <entry file="file://$PROJECT_DIR$/src/Form/CreateSortieType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="606">
-              <caret line="56" column="26" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="26" />
+            <state relative-caret-position="265">
+              <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
+              <folding>
+                <element signature="e#28#49#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/sortie/creerSortie.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -49,44 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entity/Sorties.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="91" column="24" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/Inscriptions.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="28" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Repository/InscriptionsRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/sortie/afficherSortie.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/sortie/listeSortie.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="63" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
+            <state relative-caret-position="1666">
+              <caret line="98" column="25" selection-start-line="98" selection-start-column="25" selection-end-line="98" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -108,25 +106,30 @@
         <option value="$PROJECT_DIR$/config/packages/doctrine.yaml" />
         <option value="$PROJECT_DIR$/src/Form/LoginType.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/config/packages/security.yaml" />
         <option value="$PROJECT_DIR$/src/Controller/ParticipantController.php" />
         <option value="$PROJECT_DIR$/templates/home/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/HomeController.php" />
         <option value="$PROJECT_DIR$/src/Form/RegisterType.php" />
-        <option value="$PROJECT_DIR$/src/Form/CreateSortieType.php" />
-        <option value="$PROJECT_DIR$/templates/sortie/creerSortie.html.twig" />
         <option value="$PROJECT_DIR$/src/Repository/UserRepository.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Sorties.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Participants.php" />
         <option value="$PROJECT_DIR$/src/Repository/ParticpantsRepository.php" />
         <option value="$PROJECT_DIR$/src/Repository/ParticipantsRepository.php" />
         <option value="$PROJECT_DIR$/templates/participants/login.html.twig" />
-        <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/Inscriptions.php" />
         <option value="$PROJECT_DIR$/src/Repository/InscriptionsRepository.php" />
-        <option value="$PROJECT_DIR$/templates/sortie/listeSortie.html.twig" />
-        <option value="$PROJECT_DIR$/src/Controller/SortieController.php" />
         <option value="$PROJECT_DIR$/templates/sortie/afficherSortie.html.twig" />
+        <option value="$PROJECT_DIR$/src/Entity/Participants.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Lieux.php" />
+        <option value="$PROJECT_DIR$/src/Form/CreateLieuType.php" />
+        <option value="$PROJECT_DIR$/config/packages/security.yaml" />
+        <option value="$PROJECT_DIR$/templates/lieu/creerLieu.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/LieuController.php" />
+        <option value="$PROJECT_DIR$/templates/lieu/listeLieux.html.twig" />
+        <option value="$PROJECT_DIR$/src/Entity/Sorties.php" />
+        <option value="$PROJECT_DIR$/templates/sortie/creerSortie.html.twig" />
+        <option value="$PROJECT_DIR$/src/Form/CreateSortieType.php" />
+        <option value="$PROJECT_DIR$/src/Controller/SortieController.php" />
+        <option value="$PROJECT_DIR$/templates/sortie/listeSortie.html.twig" />
+        <option value="$PROJECT_DIR$/templates/base.html.twig" />
       </list>
     </option>
   </component>
@@ -237,8 +240,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1677" />
-    <option name="y" value="-15" />
+    <option name="x" value="1424" />
+    <option name="y" value="-9" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -247,7 +250,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -281,36 +283,13 @@
             <path>
               <item name="Sortir.com" type="b2602c69:ProjectViewProjectNode" />
               <item name="Sortir.com" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Repository" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sortir.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sortir.com" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sortir.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sortir.com" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sortir.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sortir.com" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="participants" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sortir.com" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sortir.com" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="sortie" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -351,22 +330,24 @@
       <workItem from="1614672590291" duration="14385000" />
       <workItem from="1614758356172" duration="7616000" />
       <workItem from="1614767038270" duration="14370000" />
-      <workItem from="1614844946315" duration="1221000" />
+      <workItem from="1614844946315" duration="16914000" />
+      <workItem from="1615190131605" duration="9449000" />
+      <workItem from="1615201612668" duration="1867000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49044000" />
+    <option name="totallyTimeSpent" value="76053000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26066098" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26599148" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -376,7 +357,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Thumbnails" order="9" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -413,13 +394,6 @@
     <entry file="file://$PROJECT_DIR$/config/services.yaml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/home/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -447,26 +421,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/UserRepository.php" />
     <entry file="file://$PROJECT_DIR$/src/Repository/SortiesRepository.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/ParticipantController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-          <folding>
-            <element signature="e#34#99#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/ParticpantsRepository.php" />
     <entry file="file://$PROJECT_DIR$/templates/participants/login.html.twig">
@@ -483,64 +440,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/sortie/creerSortie.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/CreateSortieType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="24" column="57" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
-          <folding>
-            <element signature="e#28#51#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="58" column="133" selection-start-line="58" selection-start-column="133" selection-end-line="58" selection-end-column="133" />
-          <folding>
-            <element signature="e#1525#1529#0#Twig" expanded="true" />
-            <element signature="e#2453#2460#0#Twig" expanded="true" />
-            <element signature="e#2627#2638#0#Twig" expanded="true" />
-            <element signature="e#3060#3069#0#Twig" expanded="true" />
-            <element signature="e#3206#3211#0#Twig" expanded="true" />
-            <element signature="e#3523#3532#0#Twig" expanded="true" />
-            <element signature="e#3673#3682#0#Twig" expanded="true" />
-            <element signature="e#3969#3989#0#Twig" expanded="true" />
-            <element signature="e#4130#4150#0#Twig" expanded="true" />
-            <element signature="e#4328#4337#0#Twig" expanded="true" />
-            <element signature="e#4478#4487#0#Twig" expanded="true" />
-            <element signature="e#4744#4750#0#Twig" expanded="true" />
-            <element signature="e#4887#4893#0#Twig" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Participants.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="11" column="71" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/Etats.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
           <caret line="21" column="19" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Inscriptions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="28" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -551,47 +454,163 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Sorties.php">
+    <entry file="file://$PROJECT_DIR$/src/Repository/LieuxRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="91" column="24" selection-start-line="91" selection-start-column="12" selection-end-line="91" selection-end-column="24" />
+        <state relative-caret-position="221">
+          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/sortie/listeSortie.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/Entity/Inscriptions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="63" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
+        <state relative-caret-position="207">
+          <caret line="21" column="28" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Villes.php">
+    <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        <state relative-caret-position="459">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Lieux.php">
+    <entry file="file://$PROJECT_DIR$/templates/lieu/creerLieu.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="56" column="26" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="26" />
+        <state relative-caret-position="-221">
+          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/CreateLieuType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-177">
+          <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+          <folding>
+            <element signature="e#28#49#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/sortie/afficherSortie.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+        <state relative-caret-position="153">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/lieu/listeLieux.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/ParticipantController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="104" column="51" selection-start-line="104" selection-start-column="51" selection-end-line="104" selection-end-column="51" />
+          <folding>
+            <element signature="e#34#99#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Lieux.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-414">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Sites.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-160" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Villes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="21" column="20" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Participants.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="196" column="44" selection-start-line="196" selection-start-column="44" selection-end-line="196" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/sortie/creerSortie.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Sorties.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1666">
+          <caret line="98" column="25" selection-start-line="98" selection-start-column="25" selection-end-line="98" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/CreateSortieType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
+          <folding>
+            <element signature="e#28#49#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/LieuController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="47" />
+          <folding>
+            <element signature="e#35#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/sortie/listeSortie.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/SortieController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="132">
+          <caret line="23" column="39" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="39" />
           <folding>
             <element signature="e#34#55#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="43" column="95" selection-start-line="43" selection-start-column="95" selection-end-line="43" selection-end-column="95" />
+          <folding>
+            <element signature="e#2497#2504#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>

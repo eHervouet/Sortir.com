@@ -1,34 +1,37 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ parent() }} | Liste des sorties{% endblock %}
-
 {% block body %}
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">Nom de la sortie</th>
-            <th scope="col">Date de la sortie</th>
-            <th scope="col">Clôture</th>
-            <th scope="col">inscrits/places</th>
-            <th scolpe="col">Etat</th>
-            <th scolpe="col">Inscrit</th>
-            <th scolpe="col">Organisateur</th>
-            <th scolpe="col">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            {% for sortie in listeSorties %}
-            <td>{{ sortie.nom }}</td>
-            <td>{{ sortie.datedebut|date('m/d/Y') }}</td>
-            <td>{{ sortie.datecloture|date('m/d/Y') }}</td>
-            <td>{{ sortie.nbinscrit }}/{{ sortie.nbinscriptionsmax }}</td>
-            <td>{{ sortie.libelleetat }}</td>
-            <td>{% if sortie.estinscrit %}X{% else %}{% endif %}</td>
-            <td>{{ sortie.nomorganisateur }}</td>
-            <td><a href="{{ path('afficherSortie', { 'noSortie': sortie.nosortie }) }}">Afficher</a></td>
-            {% endfor %}
-        </tr>
-        </tbody>
-    </table>
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <table class="table table-responsive">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nom de la sortie</th>
+                    <th scope="col">Date de la sortie</th>
+                    <th scope="col">Clôture</th>
+                    <th scope="col">inscrits/places</th>
+                    <th scolpe="col">Etat</th>
+                    <th scolpe="col">Inscrit</th>
+                    <th scolpe="col">Organisateur</th>
+                    <th scolpe="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for sortie in listeSorties %}
+                    <tr>
+                        <td>{{ sortie.nom }}</td>
+                        <td>{{ sortie.datedebut|date('m/d/Y') }}</td>
+                        <td>{{ sortie.datecloture|date('m/d/Y') }}</td>
+                        <td>{{ sortie.nbinscrit }}/{{ sortie.nbinscriptionsmax }}</td>
+                        <td>{{ sortie.libelleetat }}</td>
+                        <td>{% if sortie.estinscrit %}X{% else %}{% endif %}</td>
+                        <td>{{ sortie.nomorganisateur }}</td>
+                        <td><a href="{{ path('afficherSortie', { 'noSortie': sortie.nosortie }) }}">Afficher</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Lieux;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -20,20 +21,37 @@ class CreateLieuType extends AbstractType
                 'label' => 'Nom du lieu :'
             ])
             ->add('rue', TextType::class, [
-                'label' => 'Rue :'
+                'label' => 'Rue :',
+                'attr' => [
+                    'class' => 'addresse',
+                    'readonly' => true
+                ]
+            ])
+            ->add('villesNoVille', TextType::class, [
+                'label' => 'Ville :',
+                'attr' => [
+                    'class' => 'ville',
+                    'readonly' => true
+                ]
             ])
             ->add('latitude', NumberType::class, [
                 'label' => 'Latitude :',
-                'html5' => true
+                'attr' => [
+                    'class' => 'lat',
+                    'readonly' => true
+                ]
             ])
             ->add('longitude', NumberType::class, [
                 'label' => 'Longitude :',
-                'html5' => true
+                'attr' => [
+                    'class' => 'lon',
+                    'readonly' => true
+                ]
             ])
-            ->add('villesNoVille', null, [
-                'label' => 'Ville :',
-                'choice_label' => 'nomVille',
-                'placeholder' => false,
+            ->add('cp', HiddenType::class, [
+                'attr' => [
+                    'class' => 'cp'
+                ]
             ])
             ->add('enregistrer', SubmitType::class, [
                 'label' => 'Enregistrer'
@@ -43,10 +61,5 @@ class CreateLieuType extends AbstractType
             ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => Lieux::class,
-        ]);
-    }
+    //
 }

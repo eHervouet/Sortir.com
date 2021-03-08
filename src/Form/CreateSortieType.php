@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Lieux;
 use App\Entity\Sorties;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -38,6 +40,11 @@ class CreateSortieType extends AbstractType
             ->add('descriptioninfos', TextareaType::class, [
                 'label' => 'Description et infos :'
             ])
+            ->add('lieuxnolieu', EntityType::class, [
+                'label' => 'Lieu :',
+                'class' => Lieux::class,
+                'choice_label' => 'nomLieu'
+            ])
             ->add('enregistrer', SubmitType::class, [
                 'label' => 'Enregistrer'
             ])
@@ -45,12 +52,5 @@ class CreateSortieType extends AbstractType
                 'label' => 'Annuler'
             ]);
         ;
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => Sorties::class,
-        ]);
     }
 }

@@ -10,9 +10,13 @@
         position: relative;
         top: 5em;
     }
+    #detailsMap{
+    height: 400px;
+    }
 {% endblock %}
 
 {% block body %}
+    {% if dump is defined %}{{ dump }}{% endif %}
 <div id="formCreate">
     {{  form_start(createSortieForm) }}
 

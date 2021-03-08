@@ -58,14 +58,14 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
     /**
      * @var string
      *
-     * @ORM\Column(name="mail", type="string", length=20, nullable=false)
+     * @ORM\Column(name="mail", type="string", length=100, nullable=false)
      */
     private $mail;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mot_de_passe", type="string", length=20, nullable=false)
+     * @ORM\Column(name="mot_de_passe", type="string", length=100, nullable=false)
      */
     private $motDePasse;
 
