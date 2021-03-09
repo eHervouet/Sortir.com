@@ -11,10 +11,10 @@
                     <th scope="col">Date de la sortie</th>
                     <th scope="col">Clôture</th>
                     <th scope="col">inscrits/places</th>
-                    <th scolpe="col">Etat</th>
-                    <th scolpe="col">Inscrit</th>
-                    <th scolpe="col">Organisateur</th>
-                    <th scolpe="col">Action</th>
+                    <th scope="col">Etat</th>
+                    <th scope="col">Inscrit</th>
+                    <th scope="col">Organisateur</th>
+                    <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,7 +27,12 @@
                         <td>{{ sortie.libelleetat }}</td>
                         <td>{% if sortie.estinscrit %}X{% else %}{% endif %}</td>
                         <td><a href="{{ path('profil', {'id': sortie.numorganisateur }) }}">{{ sortie.nomorganisateur }}</a></td>
-                        <td><a href="{{ path('afficherSortie', { 'noSortie': sortie.nosortie }) }}">Afficher</a></td>
+                        <td><a href="{{ path('afficherSortie', { 'noSortie': sortie.nosortie }) }}">Afficher</a>
+                            {% if sortie.estinscrit == false and sortie.datecloture > "now"|date("m/d/Y") %}
+                                <a href="{{ path('inscription', {'nosortie': sortie.nosortie, 'noparticipant': app.user.noParticipant}) }}"> / S'inscrire</a>
+                            {% else %}
+                                <a href="{{ path('desinscription', {'nosortie': sortie.nosortie, 'noparticipant': app.user.noParticipant}) }}"> / Se désinscrire</a>
+                            {% endif %}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -59,5 +59,17 @@ class Inscriptions
         return $this;
     }
 
+    public function setParticipantsNoParticipant($numParticipant): void
+    {
+        $this->participantsNoParticipant = $numParticipant;
+    }
+
+     /**
+     * @param int $sortiesNoSortie
+     */
+    public function setSortiesNoSortie(int $sortiesNoSortie): void
+    {
+        $this->sortiesNoSortie = $sortiesNoSortie;
+    }
 
 }
