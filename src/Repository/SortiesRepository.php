@@ -19,22 +19,29 @@ class SortiesRepository extends ServiceEntityRepository
         parent::__construct($registry, Sorties::class);
     }
 
-    // /**
-    //  * @return Sorties[] Returns an array of Sorties objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    // @return Sorties[] Returns an array of Sorties objects
+    // Les sorties réalisées depuis plus d’un mois ne sont pas consultables.
+    public function findAllFilteredByDateAndState()
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $em = $this->getEntityManager();
+
+        $today = date("Y-m-d");
+        $plusOneMonth = strtotime(date("Y-m-d", strtotime($today)) . "+1 month");
+
+        $query = $em->createQuery('
+            SELECT sorties
+            FROM App\Entity\Sorties sorties
+            WHERE sorties.noSortie NOT IN
+                (SELECT s.noSortie
+                FROM App\Entity\Sorties s
+                WHERE 
+                    (s.etatsNoEtat = 5 or s.etatsNoEtat = 6) 
+                    and s.datedebut > :date)
+            ORDER BY sorties.datedebut DESC'
+            )->setParameter('date', $plusOneMonth);
+
+            return $query->getResult();
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Sorties

@@ -31,7 +31,7 @@ class SortieController extends AbstractController
         $participantRepo = $this->getDoctrine()->getRepository(Participants::class);
         $inscriptionRepo = $this->getDoctrine()->getRepository(Inscriptions::class);
         $etatRepo = $this->getDoctrine()->getRepository(Etats::class);
-        $listeSorties = $sortieRepo->findAll();
+        $listeSorties = $sortieRepo->findAllFilteredByDateAndState();
         foreach($listeSorties as $sortie) {
             // Récupération du nom et du prénom de l'organisateur
             $orga = $participantRepo->findOneBy(['noParticipant' => $propertyAccessor->getValue($sortie, 'organisateur')]);
