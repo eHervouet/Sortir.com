@@ -28,7 +28,7 @@
                         <td>{% if sortie.estinscrit %}X{% else %}{% endif %}</td>
                         <td><a href="{{ path('profil', {'id': sortie.numorganisateur }) }}">{{ sortie.nomorganisateur }}</a></td>
                         <td><a href="{{ path('afficherSortie', { 'noSortie': sortie.nosortie }) }}">Afficher</a>
-                            {% if sortie.estinscrit == false and sortie.datecloture > "now"|date("m/d/Y") and sortie.nbinscrit < sortie.nbinscriptionsmax %}
+                            {% if sortie.estinscrit == false and sortie.datecloture > "now"|date("m/d/Y") and sortie.nbinscrit < sortie.nbinscriptionsmax and app.user is not null%}
                                 <a href="{{ path('inscription', {'nosortie': sortie.nosortie, 'noparticipant': app.user.noParticipant}) }}"> / S'inscrire</a>
                             {% elseif sortie.estinscrit == true and sortie.datedebut > "now"|date("m/d/Y") %}
                                 <a href="{{ path('desinscription', {'nosortie': sortie.nosortie, 'noparticipant': app.user.noParticipant}) }}"> / Se désinscrire</a>
