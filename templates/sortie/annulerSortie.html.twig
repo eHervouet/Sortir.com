@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% form_theme cancelSortieForm 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block title %}{{ parent() }} | Annuler sortie{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    #formCreate{
+    max-width: 60%;
+    margin: 0 auto;
+    position: relative;
+    top: 5em;
+    }
+{% endblock %}
+{% block body %}
+<br/>
+<h2 style="text-align: center;">Annuler la sortie</h2>
+<br/>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-10">
+            <table class="table">
+                <tr>
+                    <td>Nom de la sortie :</td>
+                    <td>{{ sortie.nom }}</td>
+                </tr>
+                <tr>
+                    <td>Date de la sortie :</td>
+                    <td>{{ sortie.datedebut|date('m/d/Y') }}</td>
+                </tr>
+                <tr>
+                    <td>Site organisateur :</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Lieu :</td>
+                    <td></td>
+                </tr>
+            </table>
+            <div id="formCreate">
+                {{ form_start(cancelSortieForm) }}
+                {{ form_widget(cancelSortieForm) }}
+                {{ form_end(cancelSortieForm) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

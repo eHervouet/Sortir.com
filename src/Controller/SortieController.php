@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use App\Form\CancelSortieType;
 
 
 class SortieController extends AbstractController
@@ -33,10 +34,11 @@ class SortieController extends AbstractController
         $etatRepo = $this->getDoctrine()->getRepository(Etats::class);
         $listeSorties = $sortieRepo->findAllFilteredByDateAndState();
         foreach($listeSorties as $sortie) {
-            // Récupération du nom et du prénom de l'organisateur
+            // Récupération du nom, prénom, pseudo de l'organisateur
             $orga = $participantRepo->findOneBy(['noParticipant' => $propertyAccessor->getValue($sortie, 'organisateur')]);
             $sortie->nomorganisateur = $orga->getNom().' '.$orga->getPrenom();
             $sortie->numorganisateur = $orga->getNoParticipant();
+            $sortie->pseudoorganisateur = $orga->getPseudo();
 
             // Récupération du nombre d'inscrit à la sortie
             $nbInscrit = $inscriptionRepo->findBy(['sortiesNoSortie' => $propertyAccessor->getValue($sortie, 'nosortie')]);
@@ -77,7 +79,6 @@ class SortieController extends AbstractController
             // Récupération du nom de l'utilisateur
             $participantRepo = $this->getDoctrine()->getRepository(Participants::class);
             $participant = $participantRepo->findOneBy(['pseudo' => $user->getUsername()]);
-            //$dump = var_dump($data);
             $sortie->setNom($data['nom']);
             $sortie->setDatedebut($data['datedebut']);
             $sortie->setDatecloture($data['datecloture']);
@@ -113,6 +114,30 @@ class SortieController extends AbstractController
         $lieu->laville = $ville;
         $sortie->lieu = $lieu;
         return $this->render('sortie/afficherSortie.html.twig', [
+            'sortie' => $sortie
+        ]);
+    }
+
+    /**
+     * @Route("/annuler/{nosortie}", name="annuler")
+     */
+    public function annuler(Request $request, EntityManagerInterface $em): Response
+    {
+        $sortieRepo = $this->getDoctrine()->getRepository(Sorties::class);
+        $etatRepo = $this->getDoctrine()->getRepository(Etats::class);
+        $sortie = $sortieRepo->findOneBy(['noSortie' => $request->attributes->get('nosortie')]);
+        $cancelSortieForm = $this->createForm(CancelSortieType::class);
+        $cancelSortieForm->handleRequest($request);
+        if($cancelSortieForm->isSubmitted() && $cancelSortieForm->isValid()) {
+            $data = $cancelSortieForm->getData();
+            $etat = $etatRepo->findOneBy(['libelle' => 'Annulée']);
+            $sortie->setDescriptionInfos("ANNULATION : ".$data['motif']);
+            $sortie->setEtatsNoEtat($etat->getNoEtat());
+            $em->flush();
+            return $this->redirectToRoute('sorties');
+        }
+        return $this->render('sortie/annulerSortie.html.twig', [
+            "cancelSortieForm" => $cancelSortieForm->createView(),
             'sortie' => $sortie
         ]);
     }

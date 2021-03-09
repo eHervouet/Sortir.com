@@ -2,6 +2,7 @@
 
 {% block title %}{{ parent() }} | Liste des sorties{% endblock %}
 {% block body %}
+    {% set possible = ['Créée', 'Ouverte'] %}
     <div class="row justify-content-center">
         <div class="col-auto">
             <table class="table table-responsive">
@@ -28,15 +29,20 @@
                         <td>{% if sortie.estinscrit %}X{% else %}{% endif %}</td>
                         <td><a href="{{ path('profil', {'id': sortie.numorganisateur }) }}">{{ sortie.nomorganisateur }}</a></td>
                         <td><a href="{{ path('afficherSortie', { 'noSortie': sortie.nosortie }) }}">Afficher</a>
-                            {% if sortie.estinscrit == false and sortie.datecloture > "now"|date("m/d/Y") and sortie.nbinscrit < sortie.nbinscriptionsmax and app.user is not null%}
+                            {% if sortie.estinscrit == false and sortie.datecloture > "now"|date("m/d/Y") and sortie.nbinscrit < sortie.nbinscriptionsmax and app.user is not null and sortie.libelleetat in possible %}
                                 <a href="{{ path('inscription', {'nosortie': sortie.nosortie, 'noparticipant': app.user.noParticipant}) }}"> / S'inscrire</a>
-                            {% elseif sortie.estinscrit == true and sortie.datedebut > "now"|date("m/d/Y") %}
-                                <a href="{{ path('desinscription', {'nosortie': sortie.nosortie, 'noparticipant': app.user.noParticipant}) }}"> / Se désinscrire</a>
-                            {% endif %}</td>
+                            {% elseif sortie.estinscrit == true and sortie.datedebut > "now"|date("m/d/Y") and sortie.libelleetat in possible %}
+                                 / <a href="{{ path('desinscription', {'nosortie': sortie.nosortie, 'noparticipant': app.user.noParticipant}) }}">Se désinscrire</a>
+                            {% endif  %}
+                            {% if app.user is not null and sortie.pseudoorganisateur == app.user.username and sortie.libelleetat in possible %}
+                                / <a href="{{ path('annuler', {'nosortie': sortie.nosortie}) }}">Annuler</a>
+                            {% endif %}
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
+
 {% endblock %}
