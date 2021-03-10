@@ -11,10 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="participants", uniqueConstraints={@ORM\UniqueConstraint(name="participants_pseudo_uk", columns={"pseudo"})})
  * @ORM\Entity(repositoryClass="App\Repository\ParticipantsRepository")
- * @UniqueEntity(
-  *     fields={"pseudo"},
-  *     errorPath="pseudo",
-  *     message="Ce pseudo existe déjà, essayé d'en trouvé un autre.")
+ *
  */
  class Participants implements UserInterface
 {
@@ -37,7 +34,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=30, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=30, nullable=false, unique=true)
      */
     private $nom;
 
@@ -58,7 +55,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
     /**
      * @var string
      *
+<<<<<<< Updated upstream
      * @ORM\Column(name="mail", type="string", length=100, nullable=false)
+=======
+     * @ORM\Column(name="mail", type="string", length=20, nullable=false, unique=true)
+>>>>>>> Stashed changes
      */
     private $mail;
 

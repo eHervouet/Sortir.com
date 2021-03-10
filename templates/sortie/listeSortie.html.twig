@@ -3,6 +3,23 @@
 {% block title %}{{ parent() }} | Liste des sorties{% endblock %}
 {% block body %}
     {% set possible = ['Créée', 'Ouverte'] %}
+    <div class="jumbotron">
+      <div class="container">
+          {{ form_start(form) }}
+          <div class="form-row">
+              <div class="col">
+                  {{ form_row(form.organisateur) }}
+              </div>
+              <div class="col">
+                  {{ form_row(form.inscrit) }}
+              </div>
+              <div class="col">
+                <button class="btn btn-primary">Rechercher</button>
+              </div>
+          </div>
+          {{ form_end(form) }}
+      </div>
+    </div>
     <div class="row justify-content-center">
         <div class="col-auto">
             <table class="table table-responsive">

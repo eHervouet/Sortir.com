@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Participants;
 use App\Entity\Sorties;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -41,6 +42,29 @@ class SortiesRepository extends ServiceEntityRepository
             )->setParameter('date', $plusOneMonth);
 
             return $query->getResult();
+    }
+
+    public function findByFilteredByDateAndState(Participants $participants)
+    {
+        $em = $this->getEntityManager();
+
+        $today = date("Y-m-d");
+        $plusOneMonth = strtotime(date("Y-m-d", strtotime($today)) . "+1 month");
+        $organisateur = $participants->getNoParticipant();
+
+        $query = $em->createQuery('
+            SELECT sorties
+            FROM App\Entity\Sorties sorties
+            WHERE sorties.organisateur = :organisateur AND sorties.noSortie NOT IN
+                (SELECT s.noSortie
+                FROM App\Entity\Sorties s
+                WHERE 
+                    (s.etatsNoEtat = 5 or s.etatsNoEtat = 6) 
+                    and s.datedebut < :date)
+            ORDER BY sorties.datedebut DESC'
+        )->setParameter('date', $plusOneMonth)->setParameter('organisateur', $organisateur);
+
+        return $query->getResult();
     }
 
     /*

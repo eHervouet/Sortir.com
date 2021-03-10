@@ -45,6 +45,7 @@ security:
                 lifetime: 604800  #1 week in seconds
                 path: /
                 secure: true
+
     encoders:
         App\Entity\Participants:
             algorithm: bcrypt

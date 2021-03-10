@@ -90,11 +90,17 @@
         </div>
     </nav>
     <!-- End Navbar -->
-    {% for message in app.flashes('sucess') %}
+    {% for message in app.flashes('success') %}
     <div class="alert alert-success" style="text-align: center;">
         {{ message }}
     </div>
     {% endfor %}
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger" style="text-align: center;">
+                {{ message }}
+            </div>
+        {% endfor %}
+
     {% endblock %}
 
     {% block body %}{% endblock %}

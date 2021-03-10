@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Etats;
 use App\Entity\Inscriptions;
 use App\Entity\Lieux;
+use App\Entity\PropertySearch;
 use App\Entity\Sorties;
 use App\Entity\Participants;
 use App\Entity\Villes;
 use App\Form\CreateSortieType;
+use App\Form\PropertySearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,42 +27,62 @@ class SortieController extends AbstractController
     /**
      * @Route("/sorties", name="sorties")
      */
-    public function liste(TokenStorageInterface $tokenStorage): Response
+    public function liste(TokenStorageInterface $tokenStorage, Request $request): Response
     {
+        $search = new PropertySearch();
+        $form = $this->createForm(PropertySearchType::class, $search);
+        $form->handleRequest($request);
+
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
         $sortieRepo = $this->getDoctrine()->getRepository(Sorties::class);
         $participantRepo = $this->getDoctrine()->getRepository(Participants::class);
         $inscriptionRepo = $this->getDoctrine()->getRepository(Inscriptions::class);
         $etatRepo = $this->getDoctrine()->getRepository(Etats::class);
-        $listeSorties = $sortieRepo->findAllFilteredByDateAndState();
-        foreach($listeSorties as $sortie) {
-            // Récupération du nom, prénom, pseudo de l'organisateur
-            $orga = $participantRepo->findOneBy(['noParticipant' => $propertyAccessor->getValue($sortie, 'organisateur')]);
-            $sortie->nomorganisateur = $orga->getNom().' '.$orga->getPrenom();
-            $sortie->numorganisateur = $orga->getNoParticipant();
-            $sortie->pseudoorganisateur = $orga->getPseudo();
 
-            // Récupération du nombre d'inscrit à la sortie
-            $nbInscrit = $inscriptionRepo->findBy(['sortiesNoSortie' => $propertyAccessor->getValue($sortie, 'nosortie')]);
-            $sortie->nbinscrit = count($nbInscrit);
+        if($form->isSubmitted() && $form->isValid()) {
+            $organisateur = $search->getOrganisateur();
+            if ($search->getOrganisateur()  == null) {
+                $listeSorties = $sortieRepo->findAllFilteredByDateAndState();
+            }else{
+                $listeSorties = $this->getDoctrine()->getRepository(Sorties::class)->findByFilteredByDateAndState($organisateur);
 
-            // Récupération du libelle de l'état
-            $libelleEtat = $etatRepo->findOneBy(['noEtat' => $propertyAccessor->getValue($sortie, 'etatsNoEtat')]);
-            $sortie->libelleetat = $libelleEtat->getLibelle();
-
-            // L'utilisateur actuel est inscrit ?
-            if($tokenStorage->getToken() != null) {
-                $user=$tokenStorage->getToken()->getUser();
-                $actualUser = $participantRepo->findOneBy(['pseudo' => $user->getUsername()]);
-                $estInscrit = $inscriptionRepo->findOneBy(['participantsNoParticipant' => $actualUser->getNoParticipant(), 'sortiesNoSortie' => $propertyAccessor->getValue($sortie, 'nosortie')]);
-                empty($estInscrit) ? $sortie->estinscrit = false : $sortie->estinscrit = true;
-            } else {
-                $sortie->estinscrit = false;
             }
-
+        }else {
+            $listeSorties = $sortieRepo->findAllFilteredByDateAndState();
         }
+                foreach($listeSorties as $sortie) {
+                    // Récupération du nom et du prénom de l'organisateur
+                    $orga = $participantRepo->findOneBy(['noParticipant' => $propertyAccessor->getValue($sortie, 'organisateur')]);
+                    $sortie->nomorganisateur = $orga->getNom().' '.$orga->getPrenom();
+                    $sortie->numorganisateur = $orga->getNoParticipant();
+					$sortie->pseudoorganisateur = $orga->getPseudo();
+
+                    // Récupération du nombre d'inscrit à la sortie
+                    $nbInscrit = $inscriptionRepo->findBy(['sortiesNoSortie' => $propertyAccessor->getValue($sortie, 'nosortie')]);
+                    $sortie->nbinscrit = count($nbInscrit);
+
+                    // Récupération du libelle de l'état
+                    $libelleEtat = $etatRepo->findOneBy(['noEtat' => $propertyAccessor->getValue($sortie, 'etatsNoEtat')]);
+                    $sortie->libelleetat = $libelleEtat->getLibelle();
+
+                    // L'utilisateur actuel est inscrit ?
+                    if($tokenStorage->getToken() != null) {
+                        $user=$tokenStorage->getToken()->getUser();
+                        $actualUser = $participantRepo->findOneBy(['pseudo' => $user->getUsername()]);
+                        $estInscrit = $inscriptionRepo->findOneBy(['participantsNoParticipant' => $actualUser->getNoParticipant(), 'sortiesNoSortie' => $propertyAccessor->getValue($sortie, 'nosortie')]);
+                        empty($estInscrit) ? $sortie->estinscrit = false : $sortie->estinscrit = true;
+                    } else {
+                        $sortie->estinscrit = false;
+                    }
+                }
+
+
+
+
+
         return $this->render('sortie/listeSortie.html.twig', [
-            'listeSorties' => $listeSorties
+            'listeSorties' => $listeSorties,
+            'form'         => $form->createView()
         ]);
     }
 
