@@ -2,12 +2,14 @@
 
 namespace App\Form;
 
+use App\Entity\Inscriptions;
 use App\Entity\Participants;
 use App\Entity\PropertySearch;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class PropertySearchType extends AbstractType
 {
@@ -20,7 +22,10 @@ class PropertySearchType extends AbstractType
                 'class' => Participants::class,
                 'choice_label' => 'pseudo',
             ])
-            ->add('inscrit')
+            ->add('inscrit',CheckboxType::class,[
+                'label' => 'Inscrit  : ',
+                'required' => false,
+            ])
         ;
     }
 

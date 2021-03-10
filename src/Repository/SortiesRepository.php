@@ -67,6 +67,27 @@ class SortiesRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function findByFilteredByDateAndStateAndInscrit(Participants $participants)
+    {
+        $em = $this->getEntityManager();
+
+        $today = date("Y-m-d");
+        $plusOneMonth = strtotime(date("Y-m-d", strtotime($today)) . "+1 month");
+        $participant = $participants->getNoParticipant();
+        $query = $em->createQuery('
+            SELECT sorties
+            FROM App\Entity\Sorties sorties
+            WHERE  sorties.noSortie IN (SELECT i.sortiesNoSortie FROM App\Entity\Inscriptions i WHERE i.participantsNoParticipant = :participant)
+            AND sorties.noSortie NOT IN (SELECT s.noSortie
+                FROM App\Entity\Sorties s
+                WHERE 
+                    (s.etatsNoEtat = 5 or s.etatsNoEtat = 6) 
+                    and s.datedebut < :date )
+            ORDER BY sorties.datedebut DESC'
+        )->setParameter('date', $plusOneMonth)->setParameter('participant', $participant);
+
+        return $query->getResult();
+    }
     /*
     public function findOneBySomeField($value): ?Sorties
     {

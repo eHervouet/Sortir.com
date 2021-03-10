@@ -11,14 +11,14 @@ class PropertySearch {
     private $organisateur;
 
     /**
-     *@var Boolean|null
+     *@var bool|null
      */
     private $inscrit;
 
     /**
-     * @return Boolean|null
+     * @return bool|null
      */
-    public function getInscrit(): ?Boolean
+    public function getInscrit(): ?bool
     {
         return $this->inscrit;
     }
@@ -32,9 +32,9 @@ class PropertySearch {
     }
 
     /**
-     * @param Boolean|null $inscrit
+     * @param bool|null $inscrit
      */
-    public function setInscrit(Boolean $inscrit): void
+    public function setInscrit(bool $inscrit): void
     {
         $this->inscrit = $inscrit;
     }

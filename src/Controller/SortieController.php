@@ -11,6 +11,7 @@ use App\Entity\Participants;
 use App\Entity\Villes;
 use App\Form\CreateSortieType;
 use App\Form\PropertySearchType;
+use mysql_xdevapi\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,15 +21,26 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use App\Form\CancelSortieType;
+use Symfony\Component\Security\Core\Security;
 
 
 class SortieController extends AbstractController
 {
     /**
+     * @var Security
+     */
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+    /**
      * @Route("/sorties", name="sorties")
      */
     public function liste(TokenStorageInterface $tokenStorage, Request $request): Response
     {
+
         $search = new PropertySearch();
         $form = $this->createForm(PropertySearchType::class, $search);
         $form->handleRequest($request);
@@ -41,11 +53,14 @@ class SortieController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) {
             $organisateur = $search->getOrganisateur();
-            if ($search->getOrganisateur()  == null) {
+            if ($search->getOrganisateur()  == null && $search->getInscrit() == null ) {
                 $listeSorties = $sortieRepo->findAllFilteredByDateAndState();
+            }else if($search->getInscrit() != false){
+                    $user = $this->security->getUser();
+                    $participant = $participantRepo->findOneBy(['pseudo' =>$user->getUsername()]);
+                    $listeSorties = $sortieRepo->findByFilteredByDateAndStateAndInscrit($participant);
             }else{
                 $listeSorties = $this->getDoctrine()->getRepository(Sorties::class)->findByFilteredByDateAndState($organisateur);
-
             }
         }else {
             $listeSorties = $sortieRepo->findAllFilteredByDateAndState();
