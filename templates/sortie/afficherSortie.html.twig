@@ -64,6 +64,26 @@
                     </tr>
                 </table>
             </div>
+            <div>
+                <br>
+                <h2>Liste des participants inscrits :</h2>
+                <table class="table table-responsive">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Pseudo</th>
+                            <th scope="col">Nom</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for participant in sortie.participants %}
+                    <tr>
+                        <td>{{ participant.pseudo }}</td>
+                        <td>{{ participant.prenom }} {{ participant.nom|upper }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}

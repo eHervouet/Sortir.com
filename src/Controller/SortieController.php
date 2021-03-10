@@ -107,10 +107,22 @@ class SortieController extends AbstractController
         $sortieRepo = $this->getDoctrine()->getRepository(Sorties::class);
         $lieuRepo = $this->getDoctrine()->getRepository(Lieux::class);
         $villeRepo = $this->getDoctrine()->getRepository(Villes::class);
+        $inscriptionRepo = $this->getDoctrine()->getRepository(Inscriptions::class);
+        $participantRepo = $this->getDoctrine()->getRepository(Participants::class);
         $sortie = $sortieRepo->findOneBy(['noSortie' => $noSortie]);
 
         $lieu = $lieuRepo->findOneBy(['noLieu' => $propertyAccessor->getValue($sortie, 'lieuxNoLieu')]);
         $ville = $villeRepo->findOneBy(['noVille' => $propertyAccessor->getValue($lieu, 'villesNoVille')]);
+        $inscriptions = $inscriptionRepo->findBy(['sortiesNoSortie' => $noSortie]);
+
+        $participants = [];
+
+        foreach ($inscriptions as $inscription) {
+            $noParticipant = $inscription->getParticipantsNoParticipant();
+            $participant = $participantRepo->findOneBy(['noParticipant' => $noParticipant]);
+            array_push($participants, $participant);
+        }
+        $sortie->participants = $participants;
         $lieu->laville = $ville;
         $sortie->lieu = $lieu;
         return $this->render('sortie/afficherSortie.html.twig', [
