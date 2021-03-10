@@ -135,9 +135,17 @@ class SortieController extends AbstractController
      */
     public function annuler(Request $request, EntityManagerInterface $em): Response
     {
+        $propertyAccessor = PropertyAccess::createPropertyAccessor();
         $sortieRepo = $this->getDoctrine()->getRepository(Sorties::class);
         $etatRepo = $this->getDoctrine()->getRepository(Etats::class);
+        $lieuRepo = $this->getDoctrine()->getRepository(Lieux::class);
+        $participantRepo = $this->getDoctrine()->getRepository(Participants::class);
         $sortie = $sortieRepo->findOneBy(['noSortie' => $request->attributes->get('nosortie')]);
+        $lieu = $lieuRepo->findOneBy(['noLieu' => $propertyAccessor->getValue($sortie, 'lieuxNoLieu')]);
+        $participant = $participantRepo->findOneBy(['noParticipant' => $propertyAccessor->getValue($sortie, 'organisateur')]);
+        $sortie->lieu = $lieu;
+        $sortie->participant = $participant;
+
         $cancelSortieForm = $this->createForm(CancelSortieType::class);
         $cancelSortieForm->handleRequest($request);
         if($cancelSortieForm->isSubmitted() && $cancelSortieForm->isValid()) {
