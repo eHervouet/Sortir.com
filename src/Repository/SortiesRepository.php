@@ -36,7 +36,7 @@ class SortiesRepository extends ServiceEntityRepository
                 FROM App\Entity\Sorties s
                 WHERE 
                     (s.etatsNoEtat = 5 or s.etatsNoEtat = 6) 
-                    and s.datedebut > :date)
+                    and s.datedebut < :date)
             ORDER BY sorties.datedebut DESC'
             )->setParameter('date', $plusOneMonth);
 
