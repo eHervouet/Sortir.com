@@ -55,8 +55,16 @@ class ParticipantController extends AbstractController
             return $this->redirectToRoute("home");
         }
       $arrResult = array();
-        if(isset($_FILES['file']['tmp_name'])){
-            if (($handle = fopen($_FILES['file']['tmp_name'], 'r')) !== FALSE)
+
+        if(isset($_FILES['file']['name'])){
+            $file_extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+            if ($file_extension != "csv") {
+                $this->addFlash(
+                    'error',
+                    'Veuillez insérer un fichier au format .csv',
+                );
+                return $this->redirectToRoute("home");
+            }else if (($handle = fopen($_FILES['file']['tmp_name'], 'r')) !== FALSE)
             {
 
                     while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
