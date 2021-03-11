@@ -45,8 +45,6 @@ class SortiesRepository extends ServiceEntityRepository
     {
         $em = $this->getEntityManager();
 
-        $today = date("Y-m-d");
-        $plusOneMonth = strtotime(date("Y-m-d", strtotime($today)) . "+1 month");
         $organisateur = $participants->getNoParticipant();
 
         $query = $em->createQuery('
@@ -59,7 +57,7 @@ class SortiesRepository extends ServiceEntityRepository
                     (s.etatsNoEtat = 5 or s.etatsNoEtat = 6) 
                     and s.datedebut < :date)
             ORDER BY sorties.datedebut DESC'
-        )->setParameter('date', $plusOneMonth)->setParameter('organisateur', $organisateur);
+        )->setParameter('date', new \DateTime('-1 month'))->setParameter('organisateur', $organisateur);
 
         return $query->getResult();
     }
@@ -68,8 +66,6 @@ class SortiesRepository extends ServiceEntityRepository
     {
         $em = $this->getEntityManager();
 
-        $today = date("Y-m-d");
-        $plusOneMonth = strtotime(date("Y-m-d", strtotime($today)) . "+1 month");
         $participant = $participants->getNoParticipant();
         $query = $em->createQuery('
             SELECT sorties
@@ -81,7 +77,7 @@ class SortiesRepository extends ServiceEntityRepository
                     (s.etatsNoEtat = 5 or s.etatsNoEtat = 6) 
                     and s.datedebut < :date )
             ORDER BY sorties.datedebut DESC'
-        )->setParameter('date', $plusOneMonth)->setParameter('participant', $participant);
+        )->setParameter('date', new \DateTime('-1 month'))->setParameter('participant', $participant);
 
         return $query->getResult();
     }
