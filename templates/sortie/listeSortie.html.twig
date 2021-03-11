@@ -3,6 +3,7 @@
 {% block title %}{{ parent() }} | Liste des sorties{% endblock %}
 {% block body %}
     {% set possible = ['Créée', 'Ouverte'] %}
+    {%  if app.user != null %}
     <div class="jumbotron">
       <div class="container">
           {{ form_start(form) }}
@@ -20,6 +21,7 @@
           {{ form_end(form) }}
       </div>
     </div>
+    {% endif %}
     <div class="row justify-content-center">
         <div class="col-auto">
             <table class="table table-responsive">
