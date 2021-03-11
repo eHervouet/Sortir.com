@@ -26,9 +26,6 @@ class SortiesRepository extends ServiceEntityRepository
     {
         $em = $this->getEntityManager();
 
-        $today = date("Y-m-d");
-        $plusOneMonth = strtotime(date("Y-m-d", strtotime($today)) . "+1 month");
-
         $query = $em->createQuery('
             SELECT sorties
             FROM App\Entity\Sorties sorties
@@ -39,7 +36,7 @@ class SortiesRepository extends ServiceEntityRepository
                     (s.etatsNoEtat = 5 or s.etatsNoEtat = 6) 
                     and s.datedebut < :date)
             ORDER BY sorties.datedebut DESC'
-            )->setParameter('date', $plusOneMonth);
+            )->setParameter('date', new \DateTime('-1 month'));
 
             return $query->getResult();
     }
