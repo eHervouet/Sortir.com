@@ -53,9 +53,11 @@
                         Lieux
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ path('lieux') }}">Liste des Lieux</a>
                         {% if app.user is not null %}
-                        <a class="dropdown-item" href="{{ path('creerLieu') }}">Créer un lieu</a>
+                            {% if is_granted("ROLE_ADMIN") %}
+                                <a class="dropdown-item" href="{{ path('lieux') }}">Liste des Lieux</a>
+                            {% endif %}
+                            <a class="dropdown-item" href="{{ path('creerLieu') }}">Créer un lieu</a>
                         {% endif %}
                     </div>
                 </li>
