@@ -47,20 +47,20 @@
                         {% endif %}
                     </div>
                 </li>
+                {% if app.user is not null %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Lieux
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        {% if app.user is not null %}
                             {% if is_granted("ROLE_ADMIN") %}
                                 <a class="dropdown-item" href="{{ path('lieux') }}">Liste des Lieux</a>
                             {% endif %}
                             <a class="dropdown-item" href="{{ path('creerLieu') }}">Créer un lieu</a>
-                        {% endif %}
                     </div>
                 </li>
+                {% endif %}
                 {% if app.user is null %}
                 <li class={% if path("my_profil") in currentPath %} "nav-item active" {% else %} "nav-item" {% endif %}>
                     <a class="nav-link" href="{{ path('login') }}" title="Sortir.com | Profil">Connexion<span
